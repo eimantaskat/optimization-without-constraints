@@ -1,6 +1,8 @@
 import numpy as np
 
 def simplex(fw, x0, alpha, tol=1e-6):
+    iter_count = 0
+
     # create initial simplex
     n = len(x0)
     simplex = np.zeros((n+1, n))
@@ -17,6 +19,7 @@ def simplex(fw, x0, alpha, tol=1e-6):
 
     # iterate until convergence
     while True:
+        iter_count += 1
         # find worst and best points
         worst = 0
         best = 0
@@ -62,4 +65,4 @@ def simplex(fw, x0, alpha, tol=1e-6):
             break
 
     # return best point
-    return simplex[best]
+    return simplex[best], iter_count

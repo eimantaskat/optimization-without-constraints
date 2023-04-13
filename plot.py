@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def create_plot(f, points=None, x_min=-1, x_max=1, y_min=-1, y_max=1):
+def create_plot(f, points=None, x_min=-1, x_max=1, y_min=-1, y_max=1, name='3d_plot'):
 	# Create a grid of points
 	X = np.linspace(x_min, x_max, 100)
 	Y = np.linspace(y_min, y_max, 100)
@@ -19,13 +19,14 @@ def create_plot(f, points=None, x_min=-1, x_max=1, y_min=-1, y_max=1):
 
 	plt.xlabel('X')
 	plt.ylabel('Y')
-	plt.title('Contour map')
 	plt.show()
+	# plt.savefig("plots/2d/" + name + '.png', bbox_inches='tight', dpi=300)
+	plt.clf()
 
-def add_point(ax, x, y, z, color='black', marker='o', size=10, zorder=10):
+def add_point(ax, x, y, z, color='black', marker='x', size=10, zorder=10):
 	ax.scatter(x, y, z, color=color, marker=marker, s=size, zorder=zorder)
 
-def create_3d_plot(f, points=None, x_min=-1, x_max=1, y_min=-1, y_max=1):
+def create_3d_plot(f, points=None, x_min=-1, x_max=1, y_min=-1, y_max=1, name='3d_plot'):
 	# Create a grid of points
 	X = np.linspace(x_min, x_max, 100)
 	Y = np.linspace(y_min, y_max, 100)
@@ -35,7 +36,7 @@ def create_3d_plot(f, points=None, x_min=-1, x_max=1, y_min=-1, y_max=1):
 	# Create a 3D plot
 	fig = plt.figure()
 	ax = fig.add_subplot(111, projection='3d')
-	ax.plot_surface(X, Y, Z)
+	ax.plot_surface(X, Y, Z, alpha=0.5)
 
 	if points is not None:
 		for x_point, y_point in points:
@@ -45,4 +46,7 @@ def create_3d_plot(f, points=None, x_min=-1, x_max=1, y_min=-1, y_max=1):
 	ax.set_xlabel('X')
 	ax.set_ylabel('Y')
 	ax.set_zlabel('Z')
+
 	plt.show(block=True)
+	# plt.savefig("plots/3d/" + name + '.png', bbox_inches='tight', dpi=300)
+	plt.clf()

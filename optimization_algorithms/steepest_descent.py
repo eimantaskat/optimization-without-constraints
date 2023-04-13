@@ -31,6 +31,4 @@ def steepest_descent(fw, x0, tol=1e-6):
         if np.linalg.norm(x - x_new) < tol:
             break
         x = x_new
-    return x_new
-
-
+    return x_new, iter_count
